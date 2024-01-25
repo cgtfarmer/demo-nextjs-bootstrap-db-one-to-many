@@ -42,17 +42,17 @@ DELETE /api/states/:id
 
 ```
 GET /api/residents
-POST /api/residents
-
-GET /api/residents/:id
-PUT /api/residents/:id
-DELETE /api/residents/:id
 ```
 
-#### Resident Retrieval by State ID
+#### State Resident CRUD
 
 ```
 GET /api/states/:id/residents
+POST /api/states/:id/residents
+
+GET /api/states/:id/residents/:id
+PUT /api/states/:id/residents/:id
+DELETE /api/states/:id/residents/:id
 ```
 
 #### State Summary Retrieval
