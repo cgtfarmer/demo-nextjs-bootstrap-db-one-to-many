@@ -31,8 +31,7 @@ test('create state resident', async ({ request }) => {
     gender: 'M',
     age: 35,
     weight: 185.3,
-    income: 50000.0,
-    stateId: createStateBody.id,
+    income: 50000.0
   };
 
   const response = await request.post(
@@ -52,7 +51,7 @@ test('create state resident', async ({ request }) => {
   expect(body.age).toBe(inputData.age);
   expect(body.weight).toBe(inputData.weight);
   expect(body.income).toBe(inputData.income);
-  expect(body.stateId).toBe(createStateBody.id);
+  expect(body.stateId).toBeUndefined();
 });
 
 test('retrieve state resident', async ({ request }) => {
@@ -82,12 +81,11 @@ test('update state resident', async ({ request }) => {
     gender: 'F',
     age: 33,
     weight: 155.1,
-    income: 40000.0,
-    stateId: createResidentBody.id,
+    income: 40000.0
   };
 
   const response = await request.put(
-    `/api/states/${createResidentBody.stateIid}/residents/${createResidentBody.stateIid}`,
+    `/api/states/${createResidentBody.stateId}/residents/${createResidentBody.id}`,
     { data: inputData }
   );
 
@@ -102,7 +100,7 @@ test('update state resident', async ({ request }) => {
   expect(body.age).toBe(inputData.age);
   expect(body.weight).toBe(inputData.weight);
   expect(body.income).toBe(inputData.income);
-  expect(body.stateId).toBe(createResidentBody.id);
+  expect(body.stateId).toBeUndefined();
 });
 
 test('destroy state resident', async ({ request }) => {

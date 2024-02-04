@@ -8,10 +8,6 @@ async function handler(req, res) {
     await ResidentController.index(req, res);
     break;
 
-  case 'POST':
-    await ResidentController.create(req, res);
-    break;
-
   default:
     res.status(400).json({ msg: 'Invalid route' });
   }

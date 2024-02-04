@@ -12,10 +12,10 @@ export default class StateController {
   }
 
   static async show(req, res) {
-    const { id } = req.query;
-    console.log(`[StateController#show] ${id}`);
+    const stateId = req.query.stateId;
+    console.log(`[StateController#show] ${stateId}`);
 
-    const response = await StateRepository.findById(id);
+    const response = await StateRepository.findById(stateId);
 
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);
@@ -32,12 +32,11 @@ export default class StateController {
   }
 
   static async update(req, res) {
-    const { id } = req.query;
+    const stateId = req.query.stateId;
     const data = req.body;
-    console.log(`[StateController#update] ${id}, ${JSON.stringify(data)}`);
+    console.log(`[StateController#update] ${stateId}, ${JSON.stringify(data)}`);
 
-    data.id = id;
-
+    data.id = stateId;
     const response = await StateRepository.update(data);
 
     console.log(`Response: ${JSON.stringify(response)}`);
@@ -45,10 +44,10 @@ export default class StateController {
   }
 
   static async destroy(req, res) {
-    const { id } = req.query;
-    console.log(`[StateController#destroy] ${id}`);
+    const stateId = req.query.stateId;
+    console.log(`[StateController#destroy] ${stateId}`);
 
-    await StateRepository.destroy(id);
+    await StateRepository.destroy(stateId);
 
     const response = { msg: 'Deleted successfully' };
 

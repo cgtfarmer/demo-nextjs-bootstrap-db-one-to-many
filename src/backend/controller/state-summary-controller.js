@@ -12,10 +12,10 @@ export default class StateSummaryController {
   }
 
   static async show(req, res) {
-    const { id } = req.query;
-    console.log(`[StateSummaryController#show] ${id}`);
+    const stateId = req.query.stateId;
+    console.log(`[StateSummaryController#show] ${stateId}`);
 
-    const response = await StateSummaryRepository.findById(id);
+    const response = await StateSummaryRepository.findById(stateId);
 
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);

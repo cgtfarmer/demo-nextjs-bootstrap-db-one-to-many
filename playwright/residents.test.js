@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 const PwHelpers = require('./pw-helpers');
 
 test('retrieve residents', async ({ request }) => {
-  await PwHelpers.createDefaultResident();
+  await PwHelpers.createDefaultResident(request);
 
   const response = await request.get('/api/residents');
 

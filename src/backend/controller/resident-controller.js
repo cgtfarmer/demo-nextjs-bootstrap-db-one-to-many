@@ -3,53 +3,58 @@ import ResidentRepository from '@/backend/repository/resident-repository';
 export default class ResidentController {
 
   static async index(req, res) {
-    const { id } = req.query;
-    console.log(`[ResidentController#index] stateId=${id}`);
+    const stateId = req.query.stateId;
+    console.log(`[ResidentController#index] stateId=${stateId}`);
 
-    const response = await ResidentRepository.findAll(id);
+    const response = await ResidentRepository.findAll(stateId);
 
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);
   }
 
   static async show(req, res) {
-    const { id } = req.query;
-    console.log(`[ResidentController#show] ${id}`);
+    const stateId = req.query.stateId;
+    const residentId = req.query.residentId;
+    console.log(`[ResidentController#show] ${stateId}, ${residentId}`);
 
-    const response = await ResidentRepository.findById(id);
+    const response = await ResidentRepository.findById(residentId);
 
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);
   }
 
   static async create(req, res) {
+    const stateId = req.query.stateId;
     const data = req.body;
-    console.log(`[ResidentController#create] ${JSON.stringify(data)}`);
+    console.log(`[ResidentController#create] ${stateId}, ${JSON.stringify(data)}`);
 
+    data.stateId = stateId;
     const response = await ResidentRepository.create(data);
 
+    response.stateId = undefined;
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);
   }
 
   static async update(req, res) {
-    const { id } = req.query;
+    const stateId = req.query.stateId;
+    // const residentId = req.query.stateId;
     const data = req.body;
-    console.log(`[ResidentController#update] ${id}, ${JSON.stringify(data)}`);
+    console.log(`[ResidentController#update] ${stateId}, ${JSON.stringify(data)}`);
 
-    data.id = id;
-
+    data.stateId = stateId;
     const response = await ResidentRepository.update(data);
 
+    response.stateId = undefined;
     console.log(`Response: ${JSON.stringify(response)}`);
     res.status(200).json(response);
   }
 
   static async destroy(req, res) {
-    const { id } = req.query;
-    console.log(`[ResidentController#destroy] ${id}`);
+    const residentId = req.query.residentId;
+    console.log(`[ResidentController#destroy] ${residentId}`);
 
-    await ResidentRepository.destroy(id);
+    await ResidentRepository.destroy(residentId);
 
     const response = { msg: 'Deleted successfully' };
 
