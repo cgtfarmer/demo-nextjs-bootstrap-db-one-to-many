@@ -24,11 +24,11 @@ function Page() {
     fetchResidents();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (stateId, id) => {
     const confirmation = window.confirm('Are you sure you want to delete this?');
 
     if (confirmation) {
-      const response = await fetch(`/api/residents/${id}`, {
+      const response = await fetch(`/api/states/${stateId}/residents/${id}`, {
         method: 'DELETE'
       });
 
@@ -41,6 +41,8 @@ function Page() {
       }
     }
   };
+
+  if (residents.length < 1) return;
 
   const rows = [];
   for (let resident of residents) {
@@ -61,7 +63,7 @@ function Page() {
           <span> | </span>
           <Link href={`/admin/residents/${resident.id}/edit`}>Edit</Link>
           <span> | </span>
-          <Link href="" onClick={() => handleDelete(resident.id)}>Delete</Link>
+          <Link href="#" onClick={() => handleDelete(resident.stateId, resident.id)}>Delete</Link>
         </td>
       </tr>
     );

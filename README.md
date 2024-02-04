@@ -25,34 +25,61 @@ Run: `docker-compose down; docker-compose up -d mysql; sleep 20; docker-compose 
 - Or: `docker-compose run --rm playwright npx playwright test file.test.js --debug` (repeat as needed)
 - Or: `docker-compose run --rm playwright npx playwright test -g "create user" --debug` (repeat as needed)
 
-### Endpoints
+### Frontend Endpoints
+
+#### Home
+
+/
+
+#### States
+
+/states
+/states/:id
+
+#### Admin States
+
+/admin/states
+/admin/states/new
+/admin/states/:id
+/admin/states/:id/edit
+
+#### Admin Residents
+
+/admin/residents
+/admin/residents/new
+/admin/residents/:id
+/admin/residents/:id/edit
+
+
+### Backend Endpoints
 
 #### State CRUD
 
 ```
 GET /api/states
-POST /api/states
+POST /api/states (admin)
 
 GET /api/states/:id
-PUT /api/states/:id
-DELETE /api/states/:id
+PUT /api/states/:id (admin)
+DELETE /api/states/:id (admin)
 ```
 
 #### Resident CRUD
 
 ```
-GET /api/residents
+GET /api/residents (admin)
+GET /api/residents/:id (admin)
 ```
 
 #### State Resident CRUD
 
 ```
 GET /api/states/:id/residents
-POST /api/states/:id/residents
+POST /api/states/:id/residents (admin)
 
-GET /api/states/:id/residents/:id
-PUT /api/states/:id/residents/:id
-DELETE /api/states/:id/residents/:id
+GET /api/states/:id/residents/:id (admin)
+PUT /api/states/:id/residents/:id (admin)
+DELETE /api/states/:id/residents/:id (admin)
 ```
 
 #### State Summary Retrieval

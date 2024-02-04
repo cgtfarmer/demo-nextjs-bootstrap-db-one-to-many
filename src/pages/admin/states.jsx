@@ -52,11 +52,11 @@ function Page() {
         <td>{state.name}</td>
         <td>{state.symbol}</td>
         <td>
-          <Link href={`/api/states/${state.id}`}>Show</Link>
+          <Link href={`/admin/states/${state.id}`}>Show</Link>
           <span> | </span>
-          <Link href={`/api/states/${state.id}/edit`}>Edit</Link>
+          <Link href={`/admin/states/${state.id}/edit`}>Edit</Link>
           <span> | </span>
-          <Link href="" onClick={() => handleDelete(state.id)}>Delete</Link>
+          <Link href="#" onClick={() => handleDelete(state.id)}>Delete</Link>
         </td>
       </tr>
     );

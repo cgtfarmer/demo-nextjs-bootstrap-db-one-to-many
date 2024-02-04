@@ -37,7 +37,7 @@ function Page() {
     const confirmation = window.confirm('Are you sure you sure ?');
 
     if (confirmation) {
-      const response = await fetch(`/api/residents/${id}`, {
+      const response = await fetch(`/api/states/${resident.stateId}/residents/${id}`, {
         method: 'DELETE'
       });
 
@@ -62,11 +62,15 @@ function Page() {
       <div>
         <Link href={`/admin/residents/${id}/edit`}>Edit</Link>
         <span> | </span>
-        <Link href="" onClick={() => handleDelete(resident.id)}>Delete</Link>
+        <Link href="#" onClick={() => handleDelete(resident.id)}>Delete</Link>
       </div>
 
       <Table variant='dark' size="md" responsive striped hover className="show-table">
         <tbody>
+          <tr>
+            <th>ID</th>
+            <td>{resident.id}</td>
+          </tr>
           <tr>
             <th>First Name</th>
             <td>{resident.firstName}</td>
@@ -86,6 +90,10 @@ function Page() {
           <tr>
             <th>Weight</th>
             <td>{resident.weight}</td>
+          </tr>
+          <tr>
+            <th>State ID</th>
+            <td>{resident.stateId}</td>
           </tr>
         </tbody>
       </Table>

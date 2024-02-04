@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
+import Link from 'next/link';
+import Spacer from '@/frontend/components/spacer';
 
 function Page() {
   const [name, setName] = useState('');
@@ -57,6 +59,10 @@ function Page() {
   return (
     <>
       <h1 className="display-6 my-3 mb-4">Edit State</h1>
+
+      <Link variant="dark" className="me-auto" href={`/admin/states/${id}`}>Back</Link>
+
+      <Spacer />
 
       <Form className="mt-3">
         <Form.Group controlId="name">

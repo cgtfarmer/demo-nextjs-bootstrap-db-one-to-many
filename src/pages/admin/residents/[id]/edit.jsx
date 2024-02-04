@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
+import Link from 'next/link';
+import Spacer from '@/frontend/components/spacer';
 
 function Page() {
   const [firstName, setFirstName] = useState('');
@@ -44,6 +46,7 @@ function Page() {
 
   const sendUpdateResidentRequest = async () => {
     const updatedResident = {
+      id: id,
       firstName: firstName,
       lastName: lastName,
       gender: gender,
@@ -53,7 +56,7 @@ function Page() {
       stateId: stateId,
     };
 
-    const response = await fetch(`/api/residents/${id}`, {
+    const response = await fetch(`/api/states/${stateId}/residents/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedResident)
@@ -72,6 +75,10 @@ function Page() {
   return (
     <>
       <h1 className="display-6 my-3 mb-4">Edit Resident</h1>
+
+      <Link variant="dark" className="me-auto" href={`/admin/residents/${id}`}>Back</Link>
+
+      <Spacer />
 
       <Form className="mt-3">
         <Form.Group controlId="first-name">

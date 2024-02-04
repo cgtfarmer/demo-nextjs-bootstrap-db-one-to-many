@@ -55,14 +55,14 @@ function Page() {
     <>
       <h1 className="display-6 my-3 mb-4">Show State</h1>
 
-      <Link variant="dark" className="me-auto" href="/states">Back</Link>
+      <Link variant="dark" className="me-auto" href="/admin/states">Back</Link>
 
       <Spacer />
 
       <div>
         <Link href={`/states/${id}/edit`}>Edit</Link>
         <span> | </span>
-        <Link href="" onClick={() => handleDelete(state.id)}>Delete</Link>
+        <Link href="#" onClick={() => handleDelete(state.id)}>Delete</Link>
       </div>
 
       <Table variant='dark' size="md" responsive striped hover className="show-table">
